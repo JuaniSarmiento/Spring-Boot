@@ -1,0 +1,27 @@
+# Versión del archivo de Docker Compose
+
+
+# Definimos los servicios (contenedores) que vamos a usar
+services:
+  # Nuestro servicio de base de datos MySQL
+  db:
+    # Usamos la imagen oficial de MySQL, versión 8.0
+    image: mysql:8.0
+    # Le damos un nombre al contenedor para identificarlo fácil
+    container_name: biblioteca-mysql-db
+    # Mapeamos el puerto 3306 del contenedor al 3306 de nuestra máquina
+    ports:
+      - "3307:3306"
+
+    # Estas son las variables de entorno para configurar la base de datos
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234 # Contraseña para el superusuario 'root'
+      MYSQL_DATABASE: biblioteca_db      # Nombre de la base de datos que se creará al iniciar
+    # Con 'volumes' hacemos que los datos se guarden en nuestra máquina local
+    # y no se borren cada vez que paramos el contenedor. ¡Persistencia real!
+    volumes:
+      - biblioteca-mysql-data:/var/lib/mysql
+
+# Definimos el volumen que usaremos para guardar los datos
+volumes:
+  biblioteca-mysql-data:
