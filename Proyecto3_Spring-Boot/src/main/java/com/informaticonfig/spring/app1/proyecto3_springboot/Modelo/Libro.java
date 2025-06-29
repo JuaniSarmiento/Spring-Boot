@@ -2,7 +2,7 @@ package com.informaticonfig.spring.app1.proyecto3_springboot.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
+@Entity
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
